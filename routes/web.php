@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+  return view('pages.home');
+});
+
+Route::get('/login', function () {
+  return view('pages.login');
+});
+
+Route::post('/users', [UserController::class, 'getData']);
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
