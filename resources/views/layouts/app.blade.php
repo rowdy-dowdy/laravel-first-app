@@ -18,12 +18,14 @@
   </style>
 </head>
 
-<body>
+<body class="text-gray-800">
 
   @include('shared.header')
 
-  <div class="main">
-    @yield('main')
+  <div class="main relative">
+    <div class="w-full max-w-7xl mx-auto py-12 px-4">
+      @yield('main')
+    </div>
   </div>
 
   @include('shared.footer')

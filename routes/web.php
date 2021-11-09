@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -18,13 +19,14 @@ Route::get('/', function () {
   return view('pages.home');
 });
 
-Route::get('/login', function () {
-  return view('pages.login');
+Route::redirect('/product','/');
+Route::get('/product/{slug}', [ProductController::class,'index']);
+
+Route::redirect('/category','/category/all');
+Route::get('/category/{slug}', function ($slug) {
+  echo 'category , '.$slug;
 });
 
-Route::post('/users', [UserController::class, 'getData']);
-
-
 Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+  Voyager::routes();
 });
